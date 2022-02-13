@@ -84,7 +84,7 @@ antigen bundle safe-paste
 antigen apply
 
 # git-prompt
-ZSH_THEME_GIT_PROMPT_PREFIX="%B%F{green}git:(%F{reset}"
+ZSH_THEME_GIT_PROMPT_PREFIX="%B%F{blue}git:%F{green}(%F{reset}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%B%F{green})%F{reset}"
 ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg_bold[red]%}"
 ZSH_THEME_GIT_PROMPT_STAGED="%{$fg_bold[red]%}%{●%G%}"
