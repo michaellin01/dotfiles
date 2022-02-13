@@ -79,6 +79,7 @@ antigen bundle git-prompt
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle command-not-found
 antigen bundle colorize
+antigen bundle supercrabtree/k
 antigen apply
 
 # git-prompt
