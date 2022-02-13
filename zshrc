@@ -84,9 +84,12 @@ antigen bundle safe-paste
 antigen apply
 
 # git-prompt
-ZSH_THEME_GIT_PROMPT_PREFIX="%B%F{blue}git:(%F{reset}"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%B%F{blue})%F{reset}"
+ZSH_THEME_GIT_PROMPT_PREFIX="%B%F{green}git:(%F{reset}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%B%F{green})%F{reset}"
 ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg_bold[red]%}"
+ZSH_THEME_GIT_PROMPT_STAGED="%{$fg_bold[red]%}%{●%G%}"
+ZSH_THEME_GIT_PROMPT_CONFLICTS="%{$fg_bold[red]%}%{✖%G%}"
+ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg_bold[blue]%}%{✚%G%}"
 
 # User configuration
 
@@ -144,3 +147,4 @@ export PATH="/home/michael/.local/bin:$PATH"
 export DENO_INSTALL="/home/michael/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 export PATH="/home/michael/.nvm/versions/node/v14.0.0/bin:$PATH"
+export PATH="/mnt/c/tools/neovim/Neovim/bin/:$PATH"
