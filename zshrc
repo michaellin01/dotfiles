@@ -70,13 +70,15 @@ export ZSH="$HOME/.oh-my-zsh"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-source $ZSH/oh-my-zsh.sh
+# source $ZSH/oh-my-zsh.sh
 source ~/.local/share/antigen.zsh
 
 antigen use oh-my-zsh
 antigen bundle dirhistory
 antigen bundle git-prompt
 antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle command-not-found
+antigen bundle colorize
 antigen apply
 
 # git-prompt
@@ -119,6 +121,8 @@ else
     PROMPT='${debian_chroot:+($debian_chroot)}%n@%m:%~%# '
 fi
 unset color_prompt
+alias cat=ccat
+alias less=cless
 alias python=python3
 alias home="cd /mnt/c/Users/Michael"
 alias graphics="cd /mnt/c/Users/Michael/Documents/CS/Graphics"
