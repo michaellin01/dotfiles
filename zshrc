@@ -80,6 +80,7 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle command-not-found
 antigen bundle colorize
 antigen bundle supercrabtree/k
+antigen bundle safe-paste
 antigen apply
 
 # git-prompt
