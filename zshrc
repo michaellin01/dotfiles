@@ -119,6 +119,7 @@ else
     PROMPT='${debian_chroot:+($debian_chroot)}%n@%m:%~%# '
 fi
 unset color_prompt
+alias python=python3
 alias home="cd /mnt/c/Users/Michael"
 alias graphics="cd /mnt/c/Users/Michael/Documents/CS/Graphics"
 alias cs="cd /mnt/c/Users/Michael/Documents/CS/"
