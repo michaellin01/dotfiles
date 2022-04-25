@@ -116,7 +116,6 @@ ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg_bold[blue]%}%{✚%G%}"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-export TERM=xterm-256color
 case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;
 esac
