@@ -128,24 +128,13 @@ fi
 unset color_prompt
 alias cat=ccat
 alias less=cless
-alias python=python3
 alias home="cd /mnt/c/Users/Michael"
-alias graphics="cd /mnt/c/Users/Michael/Documents/CS/Graphics"
-alias cs="cd /mnt/c/Users/Michael/Documents/CS/"
-alias init.vim="cd /mnt/c/Users/Michael/AppData/local/nvim"
 alias umich="cd /mnt/c/Users/Michael/Documents/umich"
 alias drive="cd /mnt/c/Users/Michael/OneDrive\ -\ Umich"
-alias 201="ssh linmicha@peritia.eecs.umich.edu"
-alias caen="ssh linmicha@login.engin.umich.edu"
 export NVIM_LISTEN_ADDRESS=127.0.0.1:1111
 export NVIM_QT_PATH='/mnt/c/tools/neovim/Neovim/bin/nvim-qt.exe'
-alias nvim-qt='/mnt/c/Users/Michael/OneDrive/run-nvim-qt.sh'
 alias nvim="nvim --listen $NVIM_LISTEN_ADDRESS"
 export NVM_DIR="$HOME/.nvm"
-export PATH="/home/michael/.config/coc/extensions/coc-clangd-data/install/13.0.0/clangd_13.0.0/bin:$PATH"
 export PATH="/home/michael/.local/bin:$PATH"
-export DENO_INSTALL="/home/michael/.deno"
-export PATH="$DENO_INSTALL/bin:$PATH"
 export PATH="/home/michael/.nvm/versions/node/v14.0.0/bin:$PATH"
-export PATH="/mnt/c/tools/neovim/Neovim/bin:$PATH"
 export JAVA_HOME="/usr/lib/jvm/java-13-openjdk-amd6"
