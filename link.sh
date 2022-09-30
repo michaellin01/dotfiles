@@ -6,4 +6,6 @@ ln -sf ${BASEDIR}/zshrc ~/.zshrc
 curl -L git.io/antigen > ~/.local/share/antigen.zsh
 ln -sf ${BASEDIR}/vimrc ~/.vimrc
 mkdir -p ~/.config
-ln -sf ${BASEDIR}/nvim ~/.config/nvim/
+ln -sf ${BASEDIR}/nvim ~/.config/nvim
+curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
