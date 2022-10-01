@@ -179,11 +179,6 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 inoremap <buffer> <silent><expr> <C-space> coc#refresh()
-if exists('*complete_info') "allows enter key to confirm autocompletes
-  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-else
-  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-endif
 nnoremap <silent> <leader>s :call CocActionAsync('doHover')<cr>
 hi link CocErrorVirtualText CocErrorFloat
 hi link CocWarningVirtualText CocWarningFloat
