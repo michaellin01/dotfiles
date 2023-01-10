@@ -110,6 +110,8 @@ vnoremap <s-lt> <gv
 vnoremap < <gv
 nnoremap <silent> <leader>, :vs ~/.config/nvim/init.vim<CR>
 nnoremap <silent> <leader>. :source ~/.config/nvim/init.vim<CR>
+nnoremap <silent> <tab> :bn<CR>
+nnoremap <silent> <s-tab> :bp<CR>
 " term
 tnoremap <Esc> <C-\><C-n>
 tnoremap jk <C-\><C-n>
@@ -174,7 +176,7 @@ inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 " <C-g>u breaks current undo, please make your own choice.
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-function! s:check_back_space() abort
+function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
@@ -206,6 +208,7 @@ let g:sneak#use_ic_scs = 1
 " airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='minimalist'
+let g:airline_section_c = '%<%F%m %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#'
 
 " autopairs
 let g:AutoPairsCenterLine = 0
