@@ -146,3 +146,7 @@ alias nvim="nvim --listen $NVIM_LISTEN_ADDRESS"
 export NVM_DIR="$HOME/.nvm"
 export PATH="/home/michael/.local/bin:$PATH"
 export PATH="/home/michael/.nvm/versions/node/v14.0.0/bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
