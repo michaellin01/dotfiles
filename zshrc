@@ -70,18 +70,26 @@ export ZSH="$HOME/.oh-my-zsh"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-# source $ZSH/oh-my-zsh.sh
-source ~/.local/share/antigen.zsh
+plugins=(
+    dirhistory
+    git-prompt
+    command-not-found
+    colorize
+    safe-paste
+    zsh-autosuggestions
+    )
 
-antigen use oh-my-zsh
-antigen bundle dirhistory
-antigen bundle git-prompt
-antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle command-not-found
-antigen bundle colorize
-antigen bundle supercrabtree/k
-antigen bundle safe-paste
-antigen apply
+source $ZSH/oh-my-zsh.sh
+
+# antigen use oh-my-zsh
+# antigen bundle dirhistory
+# antigen bundle git-prompt
+# antigen bundle zsh-users/zsh-autosuggestions
+# antigen bundle command-not-found
+# antigen bundle colorize
+# antigen bundle supercrabtree/k
+# antigen bundle safe-paste
+# antigen apply
 
 # git-prompt
 ZSH_THEME_GIT_PROMPT_PREFIX="%B%F{blue}git:%F{green}(%F{reset}"
@@ -90,6 +98,7 @@ ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg_bold[red]%}"
 ZSH_THEME_GIT_PROMPT_STAGED="%{$fg_bold[red]%}%{●%G%}"
 ZSH_THEME_GIT_PROMPT_CONFLICTS="%{$fg_bold[red]%}%{✖%G%}"
 ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg_bold[blue]%}%{✚%G%}"
+ZSH_THEME_GIT_PROMPT_CACHE=1
 
 # User configuration
 
