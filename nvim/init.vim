@@ -1,6 +1,7 @@
 " VIM PLUGINS
 call plug#begin('~/.vim/plugged')
 Plug 'michael-lin01/gruvbox'
+" Plug 'ellisonleao/gruvbox.nvim'
 Plug 'preservim/nerdtree'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-fugitive'
@@ -20,9 +21,11 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'fannheyward/telescope-coc.nvim'
 Plug 'github/copilot.vim'
 call plug#end()
+lua require('init')
 
 syntax on
 let g:gruvbox_contrast_dark = 'hard'
+
 colorscheme gruvbox
 set bg=dark
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -272,47 +275,9 @@ nmap <Leader>db <Plug>VimspectorBalloonEval
 xmap <Leader>db <Plug>VimspectorBalloonEval
 
 " coc-snippets
-imap <C-j> <Plug>(coc-snippets-expand-jump)
-vmap <C-j> <Plug>(coc-snippets-select)
+" imap <C-j> <Plug>(coc-snippets-expand-jump)
+" vmap <C-j> <Plug>(coc-snippets-select)
 
-" Telescope
-lua << EOF
-require('telescope').setup{
-    defaults = {
-        mappings = {
-            n = {
-                ["<C-c>"] = "close",
-                ["<C-s>"] = "select_horizontal"
-            },
-            i = {
-                ["<ESC>"] = "close",
-                ["<C-d>"] = "delete_buffer",
-                ["<C-s>"] = "select_horizontal"
-            }
-        }
-    }
-}
-require('telescope').load_extension('coc')
-local utils = require('telescope.utils')
-local builtin = require('telescope.builtin')
-
-function _G.project_files()
-    local _, ret, _ = utils.get_os_command_output({ 'git', 'rev-parse', '--is-inside-work-tree' })
-    if ret == 0 then
-        builtin.git_files()
-    else
-        builtin.find_files()
-    end
-end
-function _G.grep_project()
-    local _, ret, _ = utils.get_os_command_output({ 'git', 'rev-parse', '--is-inside-work-tree' })
-    if ret == 0 then
-        builtin.live_grep({cwd = vim.fn.systemlist("git rev-parse --show-toplevel")[1]})
-    else
-        builtin.live_grep()
-    end
-end
-EOF
 nnoremap <leader>ff <cmd>lua project_files()<cr>
 nnoremap <leader>fg <cmd>lua grep_project()<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
