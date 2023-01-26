@@ -101,6 +101,7 @@ inoremap <M-k> <C-x><C-y>
 inoremap <CR> <CR> <BS>
 nnoremap o o <BS>
 nnoremap O O <BS>
+nnoremap <Enter> o<ESC>
 nnoremap Y y$
 nnoremap - ^
 vnoremap - ^
@@ -184,10 +185,12 @@ function! CheckBackspace() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 inoremap <buffer> <silent><expr> <C-space> coc#refresh()
-nnoremap <silent> <leader>s :call CocActionAsync('doHover')<cr>
-hi link CocErrorVirtualText CocErrorFloat
-hi link CocWarningVirtualText CocWarningFloat
-hi link CocInfoVirtualText CocInfoFloat
+nnoremap <silent> <leader>d :call CocActionAsync('doHover')<cr>
+hi! link CocErrorVirtualText CocErrorFloat
+hi! link CocWarningVirtualText CocWarningFloat
+hi! link CocInfoVirtualText CocInfoFloat
+hi! link CocInlayHint CocHintFloat
+
 " yank
 nnoremap <silent> <leader>y  :<C-u>CocList -A --normal yank<cr>
 augroup highlight_yank
