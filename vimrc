@@ -67,6 +67,7 @@ inoremap <M-k> <C-x><C-y>
 inoremap <CR> <CR> <BS>
 nnoremap o o <BS>
 nnoremap O O <BS>
+nnoremap <Enter> o<ESC>
 nnoremap Y y$
 nnoremap - ^
 vnoremap - ^
@@ -79,3 +80,5 @@ vnoremap <s-lt> <gv
 vnoremap < <gv
 autocmd InsertEnter * let @/ = ""
 autocmd BufWritePre * %s/\s\+$//e "removing trailing whitespace when saving
+nnoremap <silent> <tab> :bn<CR>
+nnoremap <silent> <s-tab> :bp<CR>
