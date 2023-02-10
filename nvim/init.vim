@@ -77,6 +77,7 @@ nnoremap <leader>wj <C-w>J
 nnoremap <leader>wk <C-w>K
 nnoremap <leader>wl <C-w>L
 autocmd BufEnter * silent! :lcd%:p:h
+
 " copy and paste
 vmap <C-c> "+y
 vmap <C-x> "+c
@@ -135,7 +136,8 @@ autocmd Filetype python nnoremap <F1> :w<CR>:!python3 %<CR>
 " recognize tsx files as typescript
 augroup SyntaxSettings
     autocmd!
-    autocmd BufNewFile,BufRead *.tsx set filetype=typescript
+    autocmd BufRead,BufNewFile *.jsx set filetype=javascriptreact
+    autocmd BufRead,BufNewFile *.tsx set filetype=typescriptreact
 augroup END
 " disable concealing
 autocmd Filetype json
