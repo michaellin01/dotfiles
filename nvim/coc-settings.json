@@ -2,7 +2,7 @@
     "html.autoClosingTags": true,
     "html.format.indentInnerHtml": true,
     "python.jediEnabled": false,
-    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/15.0.1/clangd_15.0.1/bin/clangd",
+    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/15.0.6/clangd_15.0.6/bin/clangd",
     "sql.database": "oracle",
     "snippets.userSnippetsDirectory": "~/.config/nvim/snippets",
     "diagnostic.checkCurrentLine": true,
@@ -17,5 +17,6 @@
     "suggest.noselect": true,
     "python.analysis.diagnosticSeverityOverrides": {
         "reportWildcardImportFromLibrary": "none"
-    }
+    },
+    "inlayHint.enable": false
 }
