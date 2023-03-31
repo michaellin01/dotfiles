@@ -18,7 +18,9 @@ require("gruvbox").setup({
 })
 vim.cmd("colorscheme gruvbox")
 --]]
-
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.opt.termguicolors = true
 require('telescope').setup{
     defaults = {
         mappings = {
@@ -54,3 +56,5 @@ function _G.grep_project()
         builtin.live_grep()
     end
 end
+
+require("nvim-tree").setup()
