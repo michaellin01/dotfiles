@@ -2,7 +2,7 @@
 call plug#begin('~/.vim/plugged')
 Plug 'michael-lin01/gruvbox'
 " Plug 'ellisonleao/gruvbox.nvim'
-Plug 'preservim/nerdtree'
+Plug 'nvim-tree/nvim-tree.lua'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-fugitive'
 Plug 'nvim-lua/plenary.nvim' " dependency for telescope
@@ -19,7 +19,6 @@ Plug 'puremourning/vimspector'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'fannheyward/telescope-coc.nvim'
-Plug 'github/copilot.vim'
 call plug#end()
 lua require('init')
 
@@ -155,11 +154,8 @@ function! ToggleSignColumn()
         let b:signcolumn_on=1
     endif
 endfunction
-" NerdTree
-nnoremap <silent> <C-n> :NERDTreeToggle<CR>
-let NERDTreeIgnore = ['\.pyc$', '\.o$', '\.so$', '\.a$', '\.swp', '*\.swp', '\.swo', '\.swn', '\.swh', '\.swm', '\.swl', '\.swk', '\.sw*$', '[a-zA-Z]*egg[a-zA-Z]*', '.DS_Store']
-let g:NERDTreeWinPos="left"
-let g:NERDTreeDirArrows=0
+" NvimTree
+nnoremap <silent> <C-n> :NvimTreeToggle<CR>
 
 "Coc
 nmap <silent> gd <cmd>Telescope coc definitions<cr>zz
@@ -187,7 +183,7 @@ function! CheckBackspace() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 inoremap <buffer> <silent><expr> <C-space> coc#refresh()
-nnoremap <silent> <leader>d :call CocActionAsync('doHover')<cr>
+nnoremap <silent> <leader>dd :call CocActionAsync('doHover')<cr>
 hi! link CocErrorVirtualText CocErrorFloat
 hi! link CocWarningVirtualText CocWarningFloat
 hi! link CocInfoVirtualText CocInfoFloat
@@ -287,3 +283,4 @@ nnoremap <leader>ff <cmd>lua project_files()<cr>
 nnoremap <leader>fg <cmd>lua grep_project()<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>fs <cmd>Telescope coc workspace_symbols<cr>
