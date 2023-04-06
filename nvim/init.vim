@@ -36,6 +36,7 @@ let b:signcolumn_on=0
 set noerrorbells
 set tabstop=4
 set shiftwidth=4
+set pumheight=10
 set noautoindent
 set expandtab
 set noswapfile
@@ -184,6 +185,7 @@ function! CheckBackspace() abort
 endfunction
 inoremap <buffer> <silent><expr> <C-space> coc#refresh()
 nnoremap <silent> <leader>dd :call CocActionAsync('doHover')<cr>
+inoremap <silent> <C-s> <C-r>=CocActionAsync('showSignatureHelp')<CR>
 hi! link CocErrorVirtualText CocErrorFloat
 hi! link CocWarningVirtualText CocWarningFloat
 hi! link CocInfoVirtualText CocInfoFloat
@@ -199,12 +201,7 @@ augroup END
 " ripgrep
 if executable('rg')
     let g:rg_derive_root='true'
-    let g:ctrlp_user_command = 'rg %s --files --hidden --color=never --glob ""'
 endif
-
-" ctrlp
-" let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-let g:ctrlp_use_caching = 0
 
 " vimsneak
 let g:sneak#use_ic_scs = 1
