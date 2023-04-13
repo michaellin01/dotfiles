@@ -18,5 +18,10 @@
     "python.analysis.diagnosticSeverityOverrides": {
         "reportWildcardImportFromLibrary": "none"
     },
+    "python.linting.pylintEnabled": true,
+    "python.linting.pydocstyleEnabled": true,
+    "python.linting.pycodestyleEnabled": true,
+    "python.analysis.useLibraryCodeForTypes": true,
+    "coc.preferences.rootPatterns": ["composer.json","composer.lock",".idea","package.json",".git",".hg",".projections.json"],
     "inlayHint.enable": false
 }
