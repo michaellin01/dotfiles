@@ -8,11 +8,11 @@ Plug 'tpope/vim-fugitive'
 Plug 'nvim-lua/plenary.nvim' " dependency for telescope
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'justinmk/vim-sneak'
-Plug 'tpope/vim-surround'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'kylechui/nvim-surround'
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
 Plug 'preservim/nerdcommenter'
-Plug 'jiangmiao/auto-pairs'
+Plug 'windwp/nvim-autopairs'
 Plug 'lervag/vimtex'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'puremourning/vimspector'
@@ -165,6 +165,7 @@ nmap <silent> gi <cmd>Telescope coc implementations<cr>
 nmap <silent> gr <cmd>Telescope coc references<cr>
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent><leader>rn <Plug>(coc-rename)
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -198,21 +199,8 @@ augroup highlight_yank
     au TextYankPost * silent! lua vim.highlight.on_yank {higroup='IncSearch', timeout=700}
 augroup END
 
-" ripgrep
-if executable('rg')
-    let g:rg_derive_root='true'
-endif
-
 " vimsneak
 let g:sneak#use_ic_scs = 1
-
-" airline
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='minimalist'
-let g:airline_section_c = '%<%F%m %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#'
-
-" autopairs
-let g:AutoPairsCenterLine = 0
 
 " nerdcommenter
 " Add spaces after comment delimiters by default
