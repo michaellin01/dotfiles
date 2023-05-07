@@ -191,6 +191,8 @@ hi! link CocErrorVirtualText CocErrorFloat
 hi! link CocWarningVirtualText CocWarningFloat
 hi! link CocInfoVirtualText CocInfoFloat
 hi! link CocInlayHint CocHintFloat
+hi! link BufferLineErrorSelected GruvboxRed
+hi! link BufferLineErrorDiagnosticSelected GruvboxRed
 
 " yank
 nnoremap <silent> <leader>y  :<C-u>CocList -A --normal yank<cr>
