@@ -65,9 +65,15 @@ require('nvim-autopairs').setup({
     ignored_next_char = "",
     map_cr = true,
 })
+function loc()
+    local r,c = unpack(vim.api.nvim_win_get_cursor(0))
+    return r..'/'..vim.api.nvim_buf_line_count(0)..':'..c
+end
 require('lualine').setup{
     options = {
         theme = 'gruvbox_dark',
+        component_separators = { left = '', right = ''},
+        section_separators = { left = '', right = ''},
     },
     sections = {
         lualine_a = {'mode'},
@@ -75,7 +81,7 @@ require('lualine').setup{
         lualine_c = {{'filename', path = 2}},
         lualine_x = {'encoding'},
         lualine_y = {'progress'},
-        lualine_z = {'location'}
+        lualine_z = {loc}
     },
     inactive_sections = {
         lualine_a = {},
