@@ -3,6 +3,7 @@
     "html.format.indentInnerHtml": true,
     "python.jediEnabled": false,
     "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/15.0.6/clangd_15.0.6/bin/clangd",
+    "semanticTokens.enable": true,
     "sql.database": "oracle",
     "snippets.userSnippetsDirectory": "~/.config/nvim/snippets",
     "diagnostic.checkCurrentLine": true,
