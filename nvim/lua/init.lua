@@ -90,37 +90,36 @@ require('lualine').setup{
         lualine_x = {'location'},
         lualine_y = {},
         lualine_z = {}
-    },
+    }
 }
 local bufferline = require('bufferline')
 bufferline.setup{
-        options = {
-            style_preset = bufferline.style_preset.no_italic,
-            text_align = "left",
-            left_mouse_command = "buffer %d",    -- can be a string | function, | false see "Mouse actions"
-            middle_mouse_command = nil,          -- can be a string | function, | false see "Mouse actions"
-            modified_icon = '●',
-            diagnostics = "coc",
-            -- The diagnostics indicator can be set to nil to keep the buffer name highlight but delete the highlighting
-            diagnostics_indicator = function(count, level, diagnostics_dict, context)
-                local icon = level:match("error") and " " or " "
-                return " " .. icon .. count
-            end,
-            offsets = {
-                {
-                    filetype = "NvimTree",
-                    text = "File Explorer",
-                    separator = true
-                }
-            },
-            color_icons = true,
-            show_buffer_icons = true,
-            show_buffer_close_icons = true,
-            show_close_icon = true,
-            show_tab_indicators = true,
-            show_duplicate_prefix = true,
-            separator_style = "thin",
-            persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
-            always_show_bufferline = true,
-        }
+    options = {
+        style_preset = bufferline.style_preset.no_italic,
+        left_mouse_command = "buffer %d",
+        middle_mouse_command = "bdelete! %d",
+        modified_icon = '●',
+        diagnostics = "coc",
+        -- The diagnostics indicator can be set to nil to keep the buffer name highlight but delete the highlighting
+        diagnostics_indicator = function(count, level, diagnostics_dict, context)
+            local icon = level:match("error") and " " or " "
+            return " " .. icon .. count
+        end,
+        offsets = {
+            {
+                filetype = "NvimTree",
+                text = "File Explorer",
+                separator = true
+            }
+        },
+        color_icons = true,
+        show_buffer_icons = true,
+        show_buffer_close_icons = true,
+        show_close_icon = true,
+        show_tab_indicators = true,
+        show_duplicate_prefix = true,
+        separator_style = "thin",
+        persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
+        always_show_bufferline = true,
+    }
 }
