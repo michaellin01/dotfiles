@@ -77,7 +77,10 @@ plugins=(
     colorize
     safe-paste
     zsh-autosuggestions
+    tmux
     )
+
+ZSH_TMUX_AUTOSTART=true
 
 source $ZSH/oh-my-zsh.sh
 
