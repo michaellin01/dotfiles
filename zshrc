@@ -141,14 +141,8 @@ unset color_prompt
 alias cat=ccat
 alias less=cless
 alias home="cd /mnt/c/Users/Michael"
-alias umich="cd /mnt/c/Users/Michael/Documents/umich"
-alias drive="cd /mnt/c/Users/Michael/OneDrive\ -\ Umich"
 export NVIM_LISTEN_ADDRESS=127.0.0.1:1111
-export NVIM_QT_PATH='/mnt/c/tools/neovim/Neovim/bin/nvim-qt.exe'
 alias nvim="nvim --listen $NVIM_LISTEN_ADDRESS"
-export NVM_DIR="$HOME/.nvm"
-export PATH="/home/michael/.local/bin:$PATH"
-export PATH="/home/michael/.nvm/versions/node/v14.0.0/bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
