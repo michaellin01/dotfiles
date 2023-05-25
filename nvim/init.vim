@@ -157,6 +157,7 @@ endfunction
 nnoremap <silent> <C-n> :NvimTreeToggle<CR>
 
 "Coc
+let g:coc_global_extensions = ['coc-pyright', 'coc-clangd', 'coc-snippets']
 nmap <silent> gd <cmd>Telescope coc definitions<cr>zz
 nmap <silent> gt <cmd>Telescope coc type_definitions<cr>
 nmap <silent> gi <cmd>Telescope coc implementations<cr>
