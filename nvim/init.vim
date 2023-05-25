@@ -1,7 +1,6 @@
 " VIM PLUGINS
 call plug#begin('~/.vim/plugged')
-Plug 'michael-lin01/gruvbox'
-" Plug 'ellisonleao/gruvbox.nvim'
+Plug 'morhetz/gruvbox'
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-fugitive'
@@ -198,6 +197,7 @@ hi! link BufferLineErrorDiagnosticSelected GruvboxRed
 hi! link CocSemVariable Normal
 hi! link CocSemParameter Normal
 hi! link CocSemClass Structure
+hi! link Type GruvboxRed
 
 " yank
 nnoremap <silent> <leader>y  :<C-u>CocList -A --normal yank<cr>
