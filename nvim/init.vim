@@ -95,6 +95,8 @@ nnoremap <M-h> ^
 nnoremap <M-l> $
 vnoremap <M-h> ^
 vnoremap <M-l> $
+inoremap <M-h> <C-o>^
+inoremap <M-l> <C-o>$
 inoremap <M-j> <C-x><C-e>
 inoremap <M-k> <C-x><C-y>
 inoremap <CR> <CR> <BS>
