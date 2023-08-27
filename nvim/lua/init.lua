@@ -58,3 +58,68 @@ function _G.grep_project()
 end
 
 require("nvim-tree").setup()
+require("nvim-surround").setup()
+require('nvim-autopairs').setup({
+    enable_check_bracket_line = false,
+    fast_wrap = {},
+    ignored_next_char = "",
+    map_cr = true,
+})
+function loc()
+    local r,c = unpack(vim.api.nvim_win_get_cursor(0))
+    return r..'/'..vim.api.nvim_buf_line_count(0)..':'..c
+end
+require('lualine').setup{
+    options = {
+        theme = 'gruvbox_dark',
+        component_separators = { left = '', right = ''},
+        section_separators = { left = '', right = ''},
+    },
+    sections = {
+        lualine_a = {'mode'},
+        lualine_b = {'branch'},
+        lualine_c = {{'filename', path = 3}},
+        lualine_x = {'encoding', 'filetype'},
+        lualine_y = {'progress'},
+        lualine_z = {loc}
+    },
+    inactive_sections = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = {{'filename', path = 3}},
+        lualine_x = {'location'},
+        lualine_y = {},
+        lualine_z = {}
+    }
+}
+local bufferline = require('bufferline')
+bufferline.setup{
+    options = {
+        style_preset = bufferline.style_preset.no_italic,
+        left_mouse_command = "buffer %d",
+        middle_mouse_command = "bdelete! %d",
+        modified_icon = '●',
+        diagnostics = "coc",
+        -- The diagnostics indicator can be set to nil to keep the buffer name highlight but delete the highlighting
+        diagnostics_indicator = function(count, level, diagnostics_dict, context)
+            local icon = level:match("error") and " " or " "
+            return " " .. icon .. count
+        end,
+        offsets = {
+            {
+                filetype = "NvimTree",
+                text = "File Explorer",
+                separator = true
+            }
+        },
+        color_icons = true,
+        show_buffer_icons = true,
+        show_buffer_close_icons = true,
+        show_close_icon = true,
+        show_tab_indicators = true,
+        show_duplicate_prefix = true,
+        separator_style = "thin",
+        persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
+        always_show_bufferline = true,
+    }
+}

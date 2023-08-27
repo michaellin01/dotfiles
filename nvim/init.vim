@@ -1,20 +1,18 @@
 " VIM PLUGINS
 call plug#begin('~/.vim/plugged')
-Plug 'michael-lin01/gruvbox'
-" Plug 'ellisonleao/gruvbox.nvim'
+Plug 'morhetz/gruvbox'
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-fugitive'
 Plug 'nvim-lua/plenary.nvim' " dependency for telescope
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'justinmk/vim-sneak'
-Plug 'tpope/vim-surround'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'kylechui/nvim-surround'
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
 Plug 'preservim/nerdcommenter'
-Plug 'jiangmiao/auto-pairs'
+Plug 'windwp/nvim-autopairs'
 Plug 'lervag/vimtex'
-Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'puremourning/vimspector'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
@@ -97,12 +95,13 @@ nnoremap <M-h> ^
 nnoremap <M-l> $
 vnoremap <M-h> ^
 vnoremap <M-l> $
+inoremap <M-h> <C-o>^
+inoremap <M-l> <C-o>$
 inoremap <M-j> <C-x><C-e>
 inoremap <M-k> <C-x><C-y>
 inoremap <CR> <CR> <BS>
 nnoremap o o <BS>
 nnoremap O O <BS>
-nnoremap <Enter> o<ESC>
 nnoremap Y y$
 nnoremap - ^
 vnoremap - ^
@@ -159,12 +158,17 @@ endfunction
 nnoremap <silent> <C-n> :NvimTreeToggle<CR>
 
 "Coc
+let g:coc_global_extensions = ['coc-pyright', 'coc-clangd', 'coc-snippets']
 nmap <silent> gd <cmd>Telescope coc definitions<cr>zz
 nmap <silent> gt <cmd>Telescope coc type_definitions<cr>
 nmap <silent> gi <cmd>Telescope coc implementations<cr>
 nmap <silent> gr <cmd>Telescope coc references<cr>
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> <leader>rn <Plug>(coc-rename)
+nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)
+xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
+nnoremap <silent> gh :call CocActionAsync('highlight')<cr>
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -190,6 +194,12 @@ hi! link CocErrorVirtualText CocErrorFloat
 hi! link CocWarningVirtualText CocWarningFloat
 hi! link CocInfoVirtualText CocInfoFloat
 hi! link CocInlayHint CocHintFloat
+hi! link BufferLineErrorSelected GruvboxRed
+hi! link BufferLineErrorDiagnosticSelected GruvboxRed
+hi! link CocSemVariable Normal
+hi! link CocSemParameter Normal
+hi! link CocSemClass Structure
+hi! link Type GruvboxRed
 
 " yank
 nnoremap <silent> <leader>y  :<C-u>CocList -A --normal yank<cr>
@@ -198,21 +208,8 @@ augroup highlight_yank
     au TextYankPost * silent! lua vim.highlight.on_yank {higroup='IncSearch', timeout=700}
 augroup END
 
-" ripgrep
-if executable('rg')
-    let g:rg_derive_root='true'
-endif
-
 " vimsneak
 let g:sneak#use_ic_scs = 1
-
-" airline
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='minimalist'
-let g:airline_section_c = '%<%F%m %#__accent_red#%{airline#util#wrap(airline#parts#readonly(),0)}%#__restore__#'
-
-" autopairs
-let g:AutoPairsCenterLine = 0
 
 " nerdcommenter
 " Add spaces after comment delimiters by default
@@ -235,11 +232,6 @@ let g:tex_flavor = "latex"
 let g:vimtex_quickfix_open_on_warning = 0
 let g:vimtex_view_general_viewer="SumatraPDF.exe"
 let g:vimtex_view_general_options=expand('%:r') . '.pdf'
-
-" cpp-enhanced-highlight
-let g:cpp_class_scope_highlight = 1
-let g:cpp_member_variable_highlight = 1
-let g:cpp_class_decl_highlight = 1
 
 " vimspector
 let g:vimspector_enable_mappings = 'HUMAN'
@@ -273,8 +265,8 @@ nmap <Leader>db <Plug>VimspectorBalloonEval
 xmap <Leader>db <Plug>VimspectorBalloonEval
 
 " coc-snippets
-" imap <C-j> <Plug>(coc-snippets-expand-jump)
-" vmap <C-j> <Plug>(coc-snippets-select)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+vmap <C-j> <Plug>(coc-snippets-select)
 
 nnoremap <leader>ff <cmd>lua project_files()<cr>
 nnoremap <leader>fg <cmd>lua grep_project()<cr>

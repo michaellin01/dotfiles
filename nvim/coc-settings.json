@@ -3,6 +3,7 @@
     "html.format.indentInnerHtml": true,
     "python.jediEnabled": false,
     "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/15.0.6/clangd_15.0.6/bin/clangd",
+    "semanticTokens.enable": true,
     "sql.database": "oracle",
     "snippets.userSnippetsDirectory": "~/.config/nvim/snippets",
     "diagnostic.checkCurrentLine": true,
@@ -18,9 +19,6 @@
     "python.analysis.diagnosticSeverityOverrides": {
         "reportWildcardImportFromLibrary": "none"
     },
-    "python.linting.pylintEnabled": true,
-    "python.linting.pydocstyleEnabled": true,
-    "python.linting.pycodestyleEnabled": true,
     "python.analysis.useLibraryCodeForTypes": true,
     "coc.preferences.rootPatterns": ["composer.json","composer.lock",".idea","package.json",".git",".hg",".projections.json"],
     "inlayHint.enable": false
