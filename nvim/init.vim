@@ -74,6 +74,7 @@ nnoremap <leader>wh <C-w>H
 nnoremap <leader>wj <C-w>J
 nnoremap <leader>wk <C-w>K
 nnoremap <leader>wl <C-w>L
+nnoremap <C-w> :bd<CR>
 autocmd BufEnter * silent! :lcd%:p:h
 
 " copy and paste
@@ -119,6 +120,7 @@ nnoremap <silent> <s-tab> :bp<CR>
 " term
 tnoremap <Esc> <C-\><C-n>
 tnoremap jk <C-\><C-n>
+autocmd TermOpen * setlocal nonumber norelativenumber
 autocmd InsertEnter * let @/ = ""
 autocmd BufWritePre * %s/\s\+$//e "removing trailing whitespace when saving
 autocmd FileType plaintex,tex,latex

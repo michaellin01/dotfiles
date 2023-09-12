@@ -77,7 +77,7 @@ require('lualine').setup{
     },
     sections = {
         lualine_a = {'mode'},
-        lualine_b = {'branch'},
+        lualine_b = {'branch', 'diagnostics'},
         lualine_c = {{'filename', path = 3}},
         lualine_x = {'encoding', 'filetype'},
         lualine_y = {'progress'},
@@ -99,12 +99,12 @@ bufferline.setup{
         left_mouse_command = "buffer %d",
         middle_mouse_command = "bdelete! %d",
         modified_icon = '●',
-        diagnostics = "coc",
-        -- The diagnostics indicator can be set to nil to keep the buffer name highlight but delete the highlighting
-        diagnostics_indicator = function(count, level, diagnostics_dict, context)
-            local icon = level:match("error") and " " or " "
-            return " " .. icon .. count
-        end,
+        diagnostics = false,
+        -- diagnostics = "coc",
+        -- diagnostics_indicator = function(count, level, diagnostics_dict, context)
+        --     local icon = level:match("error") and " " or " "
+        --     return " " .. icon .. count
+        -- end,
         offsets = {
             {
                 filetype = "NvimTree",

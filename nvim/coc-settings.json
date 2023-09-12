@@ -2,7 +2,7 @@
     "html.autoClosingTags": true,
     "html.format.indentInnerHtml": true,
     "python.jediEnabled": false,
-    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/15.0.6/clangd_15.0.6/bin/clangd",
+    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/16.0.2/clangd_16.0.2/bin/clangd",
     "semanticTokens.enable": true,
     "sql.database": "oracle",
     "snippets.userSnippetsDirectory": "~/.config/nvim/snippets",
@@ -21,5 +21,7 @@
     },
     "python.analysis.useLibraryCodeForTypes": true,
     "coc.preferences.rootPatterns": ["composer.json","composer.lock",".idea","package.json",".git",".hg",".projections.json"],
-    "inlayHint.enable": false
+    "inlayHint.enable": false,
+    "rust-analyzer.server.path": "/home/michael/.cargo/bin/rust-analyzer",
+    "snippets.ultisnips.pythonPrompt": false
 }
