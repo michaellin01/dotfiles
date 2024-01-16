@@ -23,5 +23,13 @@
     "coc.preferences.rootPatterns": ["composer.json","composer.lock",".idea","package.json",".git",".hg",".projections.json"],
     "inlayHint.enable": false,
     "rust-analyzer.server.path": "/home/michael/.cargo/bin/rust-analyzer",
-    "snippets.ultisnips.pythonPrompt": false
+    "snippets.ultisnips.pythonPrompt": false,
+    "coc.preferences.formatOnSaveFiletypes": ["cpp", "hpp"],
+    "languageserver": {
+        "ocaml-lsp": {
+            "command": "opam",
+            "args": ["config", "exec", "--", "ocamllsp"],
+            "filetypes": ["ocaml", "ml"]
+        }
+    }
 }
