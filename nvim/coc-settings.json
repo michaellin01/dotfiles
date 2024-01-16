@@ -24,5 +24,12 @@
     "inlayHint.enable": false,
     "rust-analyzer.server.path": "/home/michael/.cargo/bin/rust-analyzer",
     "snippets.ultisnips.pythonPrompt": false,
-    "coc.preferences.formatOnSaveFiletypes": ["cpp", "hpp"]
+    "coc.preferences.formatOnSaveFiletypes": ["cpp", "hpp"],
+    "languageserver": {
+        "ocaml-lsp": {
+            "command": "opam",
+            "args": ["config", "exec", "--", "ocamllsp"],
+            "filetypes": ["ocaml", "ml"]
+        }
+    }
 }
