@@ -10,14 +10,16 @@ Plug 'justinmk/vim-sneak'
 Plug 'kylechui/nvim-surround'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
-Plug 'preservim/nerdcommenter'
 Plug 'windwp/nvim-autopairs'
 Plug 'lervag/vimtex'
 Plug 'puremourning/vimspector'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'fannheyward/telescope-coc.nvim'
+Plug 'numToStr/Comment.nvim'
 call plug#end()
+let mapleader = "\<Space>"
+let maplocalleader = "\<Space>"
 lua require('init')
 
 syntax on
@@ -52,8 +54,6 @@ set mouse=a
 set inccommand=nosplit " interactive feedback when substituting
 "----------Keymaps and general stuff----------
 inoremap jk <ESC>
-let mapleader = "\<Space>"
-let maplocalleader = "\<Space>"
 noremap <Space> <Nop>
 nnoremap <expr> k v:count == 0 ? 'gk' : 'k'
 nnoremap <expr> j v:count == 0 ? 'gj' : 'j'
