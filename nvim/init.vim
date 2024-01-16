@@ -18,9 +18,6 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'fannheyward/telescope-coc.nvim'
 Plug 'numToStr/Comment.nvim'
 call plug#end()
-let mapleader = "\<Space>"
-let maplocalleader = "\<Space>"
-lua require('init')
 
 syntax on
 let g:gruvbox_contrast_dark = 'hard'
@@ -54,6 +51,8 @@ set mouse=a
 set inccommand=nosplit " interactive feedback when substituting
 "----------Keymaps and general stuff----------
 inoremap jk <ESC>
+let mapleader = "\<Space>"
+let maplocalleader = "\<Space>"
 noremap <Space> <Nop>
 nnoremap <expr> k v:count == 0 ? 'gk' : 'k'
 nnoremap <expr> j v:count == 0 ? 'gj' : 'j'
@@ -275,3 +274,5 @@ nnoremap <leader>fg <cmd>lua grep_project()<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>fs <cmd>Telescope coc workspace_symbols<cr>
+
+lua require('init')
