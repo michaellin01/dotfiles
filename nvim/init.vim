@@ -73,7 +73,7 @@ nnoremap <leader>wh <C-w>H
 nnoremap <leader>wj <C-w>J
 nnoremap <leader>wk <C-w>K
 nnoremap <leader>wl <C-w>L
-nnoremap <C-w> :bd<CR>
+nnoremap <leader>bd :bd<CR>
 autocmd BufEnter * silent! :lcd%:p:h
 
 " copy and paste
