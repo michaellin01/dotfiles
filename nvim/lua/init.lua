@@ -156,10 +156,65 @@ require 'nvim-treesitter.configs'.setup{
         enable = true,
     }
 }
+
+vim.api.nvim_set_hl(0, "@lsp.type.variable", {})
+vim.api.nvim_set_hl(0, "@variable", {})
+
 require("mason").setup()
 require("mason-lspconfig").setup{
     ensure_installed = {"clangd"},
 }
+
+local cmp = require'cmp'
+cmp.setup({
+    snippet = {
+      -- REQUIRED - you must specify a snippet engine
+      expand = function(args)
+        require('luasnip').lsp_expand(args.body)
+      end,
+    },
+    window = {
+      completion = cmp.config.window.bordered(),
+      documentation = cmp.config.window.bordered(),
+    },
+    mapping = cmp.mapping.preset.insert({
+      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-s>'] = cmp.mapping.open_docs(4),
+      ['<tab>'] = cmp.mapping.select_next_item(),
+      ['<s-tab>'] = cmp.mapping.select_prev_item(),
+      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<C-e>'] = cmp.mapping.abort(),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    }),
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
+      { name = 'luasnip' }, -- For luasnip users.
+    }, {
+      { name = 'buffer' },
+    })
+  })
+
+  -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline({ '/', '?' }, {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+      { name = 'buffer' }
+    }
+  })
+
+  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+      { name = 'path' }
+    }, {
+      { name = 'cmdline' }
+    }),
+    matching = { disallow_symbol_nonprefix_matching = false }
+  })
+
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local on_attach = function(_, _)
     vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {})
@@ -172,5 +227,6 @@ local on_attach = function(_, _)
 end
 
 require("lspconfig").clangd.setup{
-    on_attach = on_attach
+    on_attach = on_attach,
+    capabilities = capabilities
 }

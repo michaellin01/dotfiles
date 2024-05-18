@@ -2,7 +2,6 @@
 call plug#begin('~/.vim/plugged')
 Plug 'morhetz/gruvbox'
 Plug 'nvim-tree/nvim-tree.lua'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-fugitive'
 Plug 'nvim-lua/plenary.nvim' " dependency for telescope
 Plug 'nvim-telescope/telescope.nvim'
@@ -12,15 +11,19 @@ Plug 'nvim-lualine/lualine.nvim'
 Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
 Plug 'windwp/nvim-autopairs'
 Plug 'lervag/vimtex'
-" Plug 'puremourning/vimspector'
-" Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
-" Plug 'fannheyward/telescope-coc.nvim'
 Plug 'numToStr/Comment.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'L3MON4D3/LuaSnip'
+Plug 'saadparwaiz1/cmp_luasnip'
 call plug#end()
 
 syntax on
@@ -200,8 +203,8 @@ nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>fs <cmd>Telescope lsp_workspace_symbols<cr>
 
-hi! link BufferLineErrorSelected GruvboxRed
-hi! link BufferLineErrorDiagnosticSelected GruvboxRed
+" hi! link BufferLineErrorSelected GruvboxRed
+" hi! link BufferLineErrorDiagnosticSelected GruvboxRed
 hi! link Type GruvboxRed
 
 lua require('init')
