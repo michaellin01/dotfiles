@@ -2,7 +2,7 @@
 call plug#begin('~/.vim/plugged')
 Plug 'morhetz/gruvbox'
 Plug 'nvim-tree/nvim-tree.lua'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-fugitive'
 Plug 'nvim-lua/plenary.nvim' " dependency for telescope
 Plug 'nvim-telescope/telescope.nvim'
@@ -12,11 +12,15 @@ Plug 'nvim-lualine/lualine.nvim'
 Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
 Plug 'windwp/nvim-autopairs'
 Plug 'lervag/vimtex'
-Plug 'puremourning/vimspector'
-Plug 'lukas-reineke/indent-blankline.nvim'
+" Plug 'puremourning/vimspector'
+" Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'fannheyward/telescope-coc.nvim'
+" Plug 'fannheyward/telescope-coc.nvim'
 Plug 'numToStr/Comment.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
+Plug 'neovim/nvim-lspconfig'
 call plug#end()
 
 syntax on
@@ -155,56 +159,11 @@ function! ToggleSignColumn()
         let b:signcolumn_on=1
     endif
 endfunction
+
 " NvimTree
 nnoremap <silent> <C-n> :NvimTreeToggle<CR>
 
-"Coc
-let g:coc_global_extensions = ['coc-pyright', 'coc-clangd', 'coc-snippets']
-nmap <silent> gd <cmd>Telescope coc definitions<cr>zz
-nmap <silent> gt <cmd>Telescope coc type_definitions<cr>
-nmap <silent> gi <cmd>Telescope coc implementations<cr>
-nmap <silent> gr <cmd>Telescope coc references<cr>
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-nmap <silent> <leader>rn <Plug>(coc-rename)
-nmap <silent> <leader>ca <Plug>(coc-codeaction-cursor)
-nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)
-xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
-nnoremap <silent> gh :call CocActionAsync('highlight')<cr>
-
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1):
-      \ CheckBackspace() ? "\<Tab>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-
-" Make <CR> to accept selected completion item or notify coc.nvim to format
-" <C-g>u breaks current undo, please make your own choice.
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-function! CheckBackspace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-inoremap <buffer> <silent><expr> <C-space> coc#refresh()
-nnoremap <silent> <leader>dd :call CocActionAsync('doHover')<cr>
-inoremap <silent> <C-s> <C-r>=CocActionAsync('showSignatureHelp')<CR>
-hi! link CocErrorVirtualText CocErrorFloat
-hi! link CocWarningVirtualText CocWarningFloat
-hi! link CocInfoVirtualText CocInfoFloat
-hi! link CocInlayHint CocHintFloat
-hi! link BufferLineErrorSelected GruvboxRed
-hi! link BufferLineErrorDiagnosticSelected GruvboxRed
-hi! link CocSemVariable Normal
-hi! link CocSemParameter Normal
-hi! link CocSemClass Structure
-hi! link Type GruvboxRed
-
 " yank
-nnoremap <silent> <leader>y  :<C-u>CocList -A --normal yank<cr>
 augroup highlight_yank
     autocmd!
     au TextYankPost * silent! lua vim.highlight.on_yank {higroup='IncSearch', timeout=700}
@@ -235,45 +194,14 @@ let g:vimtex_quickfix_open_on_warning = 0
 let g:vimtex_view_general_viewer="SumatraPDF.exe"
 let g:vimtex_view_general_options=expand('%:r') . '.pdf'
 
-" vimspector
-let g:vimspector_enable_mappings = 'HUMAN'
-fun! GotoWindow(id)
-  :call win_gotoid(a:id)
-endfun
-func! AddToWatch()
-  let word = expand("<cexpr>")
-  call vimspector#AddWatch(word)
-endfunction
-" nnoremap <leader>d<space> :call vimspector#Launch()<CR>
-nnoremap <leader>d<space> :!make debug<CR> :call vimspector#Launch()<CR>
-nnoremap <leader>dc :call GotoWindow(g:vimspector_session_windows.code)<CR>
-nnoremap <leader>dv :call GotoWindow(g:vimspector_session_windows.variables)<CR>
-nnoremap <leader>dw :call GotoWindow(g:vimspector_session_windows.watches)<CR>
-nnoremap <leader>ds :call GotoWindow(g:vimspector_session_windows.stack_trace)<CR>
-nnoremap <leader>do :call GotoWindow(g:vimspector_session_windows.output)<CR>
-nnoremap <leader>di :call AddToWatch()<CR>
-nnoremap <leader>dk :call vimspector#Reset()<CR>
-nnoremap <leader>dp :call vimspector#ClearBreakpoints()<CR>
-nnoremap <S-h> :call vimspector#StepOut()<CR>
-nnoremap <S-l> :call vimspector#StepInto()<CR>
-nnoremap <S-j> :call vimspector#StepOver()<CR>
-nnoremap <S-k> :call vimspector#Continue()<CR>
-nnoremap <leader>dr :call vimspector#Restart()<CR>
-nnoremap <leader>dj :call vimspector#Continue()<CR>
-nnoremap <leader>drc :call vimspector#RunToCursor()<CR>
-nnoremap <leader>dh :call vimspector#ToggleBreakpoint()<CR>
-nnoremap <leader>de :call vimspector#ToggleConditionalBreakpoint()<CR>
-nmap <Leader>db <Plug>VimspectorBalloonEval
-xmap <Leader>db <Plug>VimspectorBalloonEval
-
-" coc-snippets
-imap <C-j> <Plug>(coc-snippets-expand-jump)
-vmap <C-j> <Plug>(coc-snippets-select)
-
 nnoremap <leader>ff <cmd>lua project_files()<cr>
 nnoremap <leader>fg <cmd>lua grep_project()<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-nnoremap <leader>fs <cmd>Telescope coc workspace_symbols<cr>
+nnoremap <leader>fs <cmd>Telescope lsp_workspace_symbols<cr>
+
+hi! link BufferLineErrorSelected GruvboxRed
+hi! link BufferLineErrorDiagnosticSelected GruvboxRed
+hi! link Type GruvboxRed
 
 lua require('init')

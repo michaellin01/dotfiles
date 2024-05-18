@@ -87,7 +87,7 @@ plugins=(
     tmux
     )
 
-ZSH_TMUX_AUTOSTART=true
+ZSH_TMUX_AUTOSTART=false
 
 source $ZSH/oh-my-zsh.sh
 
@@ -150,6 +150,8 @@ alias less=cless
 alias home="cd /mnt/c/Users/Michael"
 export NVIM_LISTEN_ADDRESS=127.0.0.1:1111
 alias nvim="nvim --listen $NVIM_LISTEN_ADDRESS"
+
+eval $(opam env)
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

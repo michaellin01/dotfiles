@@ -36,7 +36,6 @@ require('telescope').setup{
         }
     }
 }
-require('telescope').load_extension('coc')
 local utils = require('telescope.utils')
 local builtin = require('telescope.builtin')
 
@@ -149,3 +148,29 @@ require('Comment').setup({
         extra = true,
     },
 })
+
+require 'nvim-treesitter.configs'.setup{
+    ensure_installed = {"cpp", "python"},
+    auto_install = true,
+    highlight = {
+        enable = true,
+    }
+}
+require("mason").setup()
+require("mason-lspconfig").setup{
+    ensure_installed = {"clangd"},
+}
+
+local on_attach = function(_, _)
+    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {})
+    vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, {})
+    vim.keymap.set('n', 'gd', builtin.lsp_definitions, {})
+    vim.keymap.set('n', 'gt', builtin.lsp_type_definitions, {})
+    vim.keymap.set('n', 'gi', builtin.lsp_implementations, {})
+    vim.keymap.set('n', 'gr', builtin.lsp_references, {})
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
+end
+
+require("lspconfig").clangd.setup{
+    on_attach = on_attach
+}
