@@ -159,6 +159,7 @@ require 'nvim-treesitter.configs'.setup{
 
 vim.api.nvim_set_hl(0, "@lsp.type.variable", {})
 vim.api.nvim_set_hl(0, "@variable", {})
+vim.api.nvim_set_hl(0, "PMenu", {})
 
 require("mason").setup()
 require("mason-lspconfig").setup{
@@ -216,6 +217,43 @@ cmp.setup({
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+for _, diag in ipairs({ "Error", "Warn", "Info", "Hint" }) do
+    vim.fn.sign_define("DiagnosticSign" .. diag, {
+        text = "",
+        texthl = "DiagnosticSign" .. diag,
+        linehl = "",
+        numhl = "DiagnosticSign" .. diag,
+    })
+end
+
+vim.diagnostic.config({
+  virtual_text = {
+    prefix = '■',
+  },
+  float = {
+      header = false,
+      border = 'rounded',
+  },
+  severity_sort = true,
+})
+
+vim.keymap.set('n', '<leader>e', function()
+    -- If we find a floating window, close it.
+    local found_float = false
+    for _, win in ipairs(vim.api.nvim_list_wins()) do
+        if vim.api.nvim_win_get_config(win).relative ~= '' then
+            vim.api.nvim_win_close(win, true)
+            found_float = true
+        end
+    end
+
+    if found_float then
+        return
+    end
+
+    vim.diagnostic.open_float(nil, { focus = false })
+end, { desc = 'Toggle Diagnostics' })
+
 local on_attach = function(_, _)
     vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {})
     vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, {})
@@ -229,4 +267,8 @@ end
 require("lspconfig").clangd.setup{
     on_attach = on_attach,
     capabilities = capabilities
+}
+require("lspconfig").pyright.setup{
+    on_attach = on_attach,
+    capabilities = capabilities,
 }

@@ -79,7 +79,6 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 plugins=(
     dirhistory
-    git-prompt
     command-not-found
     colorize
     safe-paste
@@ -90,25 +89,6 @@ plugins=(
 ZSH_TMUX_AUTOSTART=false
 
 source $ZSH/oh-my-zsh.sh
-
-# antigen use oh-my-zsh
-# antigen bundle dirhistory
-# antigen bundle git-prompt
-# antigen bundle zsh-users/zsh-autosuggestions
-# antigen bundle command-not-found
-# antigen bundle colorize
-# antigen bundle supercrabtree/k
-# antigen bundle safe-paste
-# antigen apply
-
-# git-prompt
-ZSH_THEME_GIT_PROMPT_PREFIX="%B%F{blue}git:%F{green}(%F{reset}"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%B%F{green})%F{reset}"
-ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg_bold[red]%}"
-ZSH_THEME_GIT_PROMPT_STAGED="%{$fg_bold[red]%}%{●%G%}"
-ZSH_THEME_GIT_PROMPT_CONFLICTS="%{$fg_bold[red]%}%{✖%G%}"
-ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg_bold[blue]%}%{✚%G%}"
-ZSH_THEME_GIT_PROMPT_CACHE=1
 
 # User configuration
 
@@ -135,16 +115,6 @@ ZSH_THEME_GIT_PROMPT_CACHE=1
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
-esac
-if [ "$color_prompt" = yes ]; then
-    PROMPT=$'%F{cyan}┌──${debian_chroot:+($debian_chroot)──}(%B%F{blue}%n@%m%b%F{cyan})%B%F{blue}-%B%F{red}[%B%F{reset}%~%B%F{red}]%b%F{reset} $(git_super_status)\n%b%F{cyan}└─%B%F{blue}$%b%F{reset} '
-    RPROMPT=$'%(?.. %? %F{red}%B⨯%b%F{reset})%(1j. %j %F{yellow}%B⚙%b%F{reset}.)'
-else
-    PROMPT='${debian_chroot:+($debian_chroot)}%n@%m:%~%# '
-fi
-unset color_prompt
 alias cat=ccat
 alias less=cless
 alias home="cd /mnt/c/Users/Michael"
@@ -157,6 +127,7 @@ export NVM_DIR="$HOME/.nvm"
 
 unsetopt autocd
 export PATH=$PATH:"/home/michael/.local/share/bob/nvim-bin"
+path+=/home/michael/.local/bin
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
