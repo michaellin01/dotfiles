@@ -261,7 +261,7 @@ local on_attach = function(_, _)
     vim.keymap.set('n', 'gt', builtin.lsp_type_definitions, {})
     vim.keymap.set('n', 'gi', builtin.lsp_implementations, {})
     vim.keymap.set('n', 'gr', builtin.lsp_references, {})
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
+    vim.keymap.set('n', '<leader>d', vim.lsp.buf.hover, {})
 end
 
 local border = {
