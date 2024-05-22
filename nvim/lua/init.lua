@@ -150,7 +150,7 @@ require('Comment').setup({
 })
 
 require 'nvim-treesitter.configs'.setup{
-    ensure_installed = {"cpp", "python"},
+    ensure_installed = {"cpp", "python", "lua"},
     auto_install = true,
     highlight = {
         enable = true,
@@ -163,7 +163,7 @@ vim.api.nvim_set_hl(0, "PMenu", {})
 
 require("mason").setup()
 require("mason-lspconfig").setup{
-    ensure_installed = {"clangd"},
+    ensure_installed = {"clangd", "pyright"},
 }
 
 local cmp = require'cmp'
